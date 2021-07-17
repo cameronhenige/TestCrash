@@ -1,16 +1,38 @@
-//
-//  ContentView.swift
-//  TestCrash
-//
-//  Created by Hannah Krolewski on 7/16/21.
-//
 
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var testViewModel = TestViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        GeometryReader { proxy in
+            
+            ScrollView {
+                
+                VStack(alignment: .leading, spacing:0) {
+                    
+                    TabView {
+                        
+                        ForEach(testViewModel.images, id: \.self) { image in
+                            Image(image)
+                        }
+                        
+                    }.tabViewStyle(PageTabViewStyle())
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .padding()
+                    .frame(width: proxy.size.width, height: proxy.size.height/2.5)
+                    
+                }
+                Button(action: {
+                    testViewModel.removeFirst()
+                }) {
+                    Text("Remove first item from list")
+                }
+                
+            }
+            
+            
+        }.frame(maxWidth: .infinity).background(Color.black)
     }
 }
 

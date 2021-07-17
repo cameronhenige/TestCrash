@@ -1,9 +1,4 @@
-//
-//  TestCrashApp.swift
-//  TestCrash
-//
-//  Created by Hannah Krolewski on 7/16/21.
-//
+
 
 import SwiftUI
 
